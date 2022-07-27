@@ -22,6 +22,13 @@ app.get("/", function (req, res) {
   res.render("home");
 });
 
+app.get("/headers", function (req, res) {
+  res.set("Content-Type", "text/plain");
+  var s = "";
+  for (var name in req.headers) s += name + ": " + req.headers[name] + "\n";
+  res.send(s);
+});
+
 app.get("/about", function (req, res) {
   res.render("about", {
     fortune: fortune.getFortune(),
@@ -57,3 +64,5 @@ app.listen(app.get("port"), function () {
       "; press Ctrl-C to terminate."
   );
 });
+
+if (app.thing == null) console.log("bleat!");
